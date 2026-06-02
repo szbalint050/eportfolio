@@ -1,6 +1,9 @@
 import { BarChart3, Eye, Calendar, TrendingUp } from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function Dashboard() {
+  const { user } = useAuth();
+
   const stats = [
     { name: "Total Profile Views", value: "2,451", icon: Eye, change: "+12.5%", changeType: "increase" },
     { name: "Meeting Requests", value: "14", icon: Calendar, change: "+2.1%", changeType: "increase" },
@@ -11,7 +14,10 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
+          {user && <p className="text-gray-500 text-sm mt-1">Welcome back, <span className="font-medium text-indigo-600">{user.username}</span></p>}
+        </div>
         <div className="text-sm text-gray-500">Last 30 Days</div>
       </div>
 
@@ -31,11 +37,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="mt-4">
-                <span
-                  className={`text-sm font-medium ${
-                    item.changeType === "increase" ? "text-green-600" : "text-red-600"
-                  }`}
-                >
+                <span className={`text-sm font-medium ${item.changeType === "increase" ? "text-green-600" : "text-red-600"}`}>
                   {item.change}
                 </span>
                 <span className="text-sm text-gray-500 ml-2">vs last month</span>
@@ -52,7 +54,7 @@ export default function Dashboard() {
           <div className="space-y-4">
             {[
               { title: "New meeting booked", desc: "Jane Smith scheduled a 30m Intro Call", time: "2 hours ago" },
-              { title: "Profile viewed by Company X", desc: "Someone from Apple Inc. viewed your 'Fintech App' case study.", time: "5 hours ago" },
+              { title: "Profile viewed by Company X", desc: "Someone from Apple Inc. viewed your portfolio.", time: "5 hours ago" },
               { title: "New endorsement", desc: "Mark Johnson endorsed your React skills", time: "1 day ago" },
             ].map((activity, i) => (
               <div key={i} className="flex gap-4 p-4 rounded-xl border border-gray-50 hover:bg-gray-50 transition">
@@ -69,13 +71,11 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Dashboard Placeholder Image */}
+        {/* Upgrade Card */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col items-center justify-center text-center">
-          <img 
-            src="https://images.unsplash.com/photo-1665470909939-959569b20021?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3ZWIlMjBhcHBsaWNhdGlvbiUyMGRhc2hib2FyZHxlbnwxfHx8fDE3NzMxODE3NTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
-            alt="Dashboard Stats Illustration" 
-            className="w-full h-40 object-cover rounded-xl mb-4"
-          />
+          <div className="w-full h-40 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl mb-4 flex items-center justify-center">
+            <TrendingUp className="w-16 h-16 text-indigo-400" />
+          </div>
           <h3 className="font-bold text-gray-900">Need advanced analytics?</h3>
           <p className="text-sm text-gray-500 mt-2">Upgrade to Pro to see detailed company names and demographic data of your profile visitors.</p>
           <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 w-full">

@@ -10,13 +10,13 @@ export default function Home() {
           <div className="text-2xl font-bold text-gray-900">PortfolioPro</div>
           <div className="space-x-4">
             <Link to="/login" className="text-gray-600 hover:text-gray-900 font-medium">
-              Log in
+              Log In
             </Link>
             <Link
-              to="/login"
+              to="/register"
               className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition"
             >
-              Sign up
+              Sign Up
             </Link>
           </div>
         </div>
@@ -34,17 +34,17 @@ export default function Home() {
           </p>
           <div className="flex justify-center gap-4">
             <Link
-              to="/login"
+              to="/register"
               className="flex items-center bg-indigo-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-indigo-700 transition"
             >
               Get Started
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
-              to="/dashboard"
+              to="/login"
               className="flex items-center bg-gray-100 text-gray-900 px-8 py-3 rounded-lg text-lg font-medium hover:bg-gray-200 transition"
             >
-              View Demo
+              Sign In
             </Link>
           </div>
         </div>
